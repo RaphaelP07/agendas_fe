@@ -96,6 +96,14 @@ th {
   text-align: center;
 }
 
+.filler {
+  background-color: var(--main-dark-blue);
+  height: 7px;
+  width: 50px;
+  border-radius: 5px;
+  justify-self: center;
+}
+
 .line {
   background-color: rgb(222, 221, 221);
   height: 305px;
@@ -117,6 +125,10 @@ th {
   cursor: pointer;
 }
 
+.auth-link {
+  color: var(--main-dark-blue)
+}
+
 .logout-btn {
   background-color: var(--main-light-red);
 }
@@ -130,8 +142,7 @@ th {
   width: 300px;
   text-align: left;
   padding: 30px;
-  border-bottom: var(--main-dark-blue) solid 3px;
-  border-right: var(--main-dark-blue) solid 3px;
+  border: var(--main-dark-blue) solid 1px;
 }
 
 .form {
@@ -173,7 +184,7 @@ th {
 
 input, textarea {
   background-color : #c2ddff; 
-  border: none;
+  border: var(--main-dark-blue) solid 1px;
   border-radius: 2px;
   padding: 4px;
   color: black;
@@ -217,7 +228,7 @@ input, textarea {
 }
 
 .signup-btn:active, .auth-btn:active, .action:hover {
-  background-color: var(--main-light-blue);
+  background-color: var(--main-dark-blue);
 }
 
 .first:hover {
@@ -239,7 +250,7 @@ a:link {
 
 a:visited {
   font-size: 14px;
-  color: #7EA2AA;
+  color: var(--main-dark-blue);
 }
 
 .link:link,

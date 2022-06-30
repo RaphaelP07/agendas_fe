@@ -28,7 +28,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
     e.preventDefault();
 
     axios
-      .post(`${baseURL}/login`, {
+      .post(`${baseURL}/api/v1login`, {
         user: {
           email: email,
           password: password
@@ -45,7 +45,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         localStorage.setItem("loggedID", id);
         localStorage.setItem("loggedUser", email);
         localStorage.setItem("headers", JSON.stringify(token));
-        navigate("/stock-app-fe/wallet");
+        navigate("/agendas/dashboard");
       })
       .catch((error) => {
         if (error) {
@@ -63,6 +63,9 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
           <h1>Agendas</h1>
           <br />
           <p>Meet whenever and wherever</p>
+          <br />
+          <br />
+          <div className='filler'></div>
         </div>
         <div className='line'></div>
         <form className='form-right' onSubmit={onSubmit} noValidate>
@@ -99,7 +102,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
             </span>
             <div className="form-btn">
               <button className='login-btn'>Login</button>
-              <Link to="/stock-app-fe/signup">
+              <Link to="/agendas/signup">
                 <button className='signup-btn'>Sign up</button>
               </Link>
             </div>

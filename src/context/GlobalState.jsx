@@ -12,7 +12,7 @@ export const GlobalContext = createContext(initialState);
 // provider component
 export const GlobalProvider = ({ children, headers }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
-  const baseURL = "http://localhost:3000";
+  const baseURL = "http://localhost:3000.api/v1";
 
   //Actions
   function setToken(token) {
