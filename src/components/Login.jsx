@@ -45,7 +45,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         localStorage.setItem("loggedID", id);
         localStorage.setItem("loggedUser", email);
         localStorage.setItem("headers", JSON.stringify(token));
-        navigate("/agendas/dashboard");
+        navigate("/agendas/prompt");
       })
       .catch((error) => {
         if (error) {
@@ -58,7 +58,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
   return (
     <div className='container'>
       <Nav />
-      <div className='login-container'>
+      <div className='auth-container'>
         <div className='slogan'>
           <h1>Agendas</h1>
           <br />

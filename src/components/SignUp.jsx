@@ -66,58 +66,69 @@ const SignUp = () => {
   return (
     <div className='container'>
       <Nav />
-      <form onSubmit={onSubmit} noValidate>
-        <div className='form-container'>
-          <h1 className='form-title form'>
-            Sign up
-          </h1>
-          <div className="input-label form">
-            Email
+      <div className='auth-container'>
+        <form className='form-right' onSubmit={onSubmit} noValidate>
+          <div className='form-container'>
+            <h1 className='form-title form'>
+              Sign up
+            </h1>
+            <div className="input-label form">
+              Email
+            </div>
+            <input
+              required
+              className="input-form form"
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+            ></input>
+            <div className="input-label form ">
+              Password
+            </div>
+            <input
+              required
+              className="input-form form"
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+            ></input>
+            <div className="input-label form ">
+              Confirm Password
+            </div>
+            <input
+              required
+              className="input-form form"
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={onChange}
+            ></input>
+            <span className={formError === false ? "display-none" : "text-error"}>
+              {message}
+            </span>
+            <div className="form-btn">
+              <button className='signup-btn'>Sign up</button>
+            </div>
+            <p className='auth-link form'>
+              <Link to="/agendas/login"> Already have an account? </Link>
+            </p>
           </div>
-          <input
-            required
-            className="input-form form"
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-          ></input>
-          <div className="input-label form ">
-            Password
-          </div>
-          <input
-            required
-            className="input-form form"
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={onChange}
-          ></input>
-          <div className="input-label form ">
-            Confirm Password
-          </div>
-          <input
-            required
-            className="input-form form"
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={onChange}
-          ></input>
-          <span className={formError === false ? "display-none" : "text-error"}>
-            {message}
-          </span>
-          <div className="form-btn">
-            <button className='signup-btn'>Sign up</button>
-          </div>
-          <p className='auth-link form'>
-            <Link to="/agendas/login"> Already have an account? </Link>
-          </p>
+        </form>
+        <div className='line'></div>
+        <div className='slogan'>
+          <h1>Agendas</h1>
+          <br />
+          <p>Meet whenever and wherever</p>
+          <br />
+          <br />
+          <div className='filler'></div>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

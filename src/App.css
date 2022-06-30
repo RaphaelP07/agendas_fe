@@ -83,7 +83,7 @@ th {
   margin: 0 10px 0 10px
 }
 
-.login-container {
+.auth-container {
   display: flex;
   justify-content: center;
   width: 100vw;
@@ -106,7 +106,7 @@ th {
 
 .line {
   background-color: rgb(222, 221, 221);
-  height: 305px;
+  height: 350px;
   width: 2px;
 }
 
