@@ -58,46 +58,54 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
   return (
     <div className='container'>
       <Nav />
-      <form onSubmit={onSubmit} noValidate>
-        <div className='form-container'>
-          <h1 className='form-title form'>
-            Login
-          </h1>
-          <div className="input-label form">
-            Email
-          </div>
-          <input
-            required
-            className="input-form form"
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-          ></input>
-          <div className="input-label form ">
-            Password
-          </div>
-          <input
-            required
-            className="input-form form"
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={onChange}
-          ></input>
-          <span className={formError === false ? "display-none" : "text-error"}>
-            {message}
-          </span>
-          <div className="form-btn">
-            <button className='login-btn'>Login</button>
-            <Link to="/stock-app-fe/signup">
-              <button className='signup-btn'>Sign up</button>
-            </Link>
-          </div>
+      <div className='login-container'>
+        <div className='slogan'>
+          <h1>Agendas</h1>
+          <br />
+          <p>Meet whenever and wherever</p>
         </div>
-      </form>
+        <div className='line'></div>
+        <form className='form-right' onSubmit={onSubmit} noValidate>
+          <div className='form-container'>
+            <h1 className='form-title form'>
+              Login
+            </h1>
+            <div className="input-label form">
+              Email
+            </div>
+            <input
+              required
+              className="input-form form"
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={onChange}
+            ></input>
+            <div className="input-label form ">
+              Password
+            </div>
+            <input
+              required
+              className="input-form form"
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={onChange}
+            ></input>
+            <span className={formError === false ? "display-none" : "text-error"}>
+              {message}
+            </span>
+            <div className="form-btn">
+              <button className='login-btn'>Login</button>
+              <Link to="/stock-app-fe/signup">
+                <button className='signup-btn'>Sign up</button>
+              </Link>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
