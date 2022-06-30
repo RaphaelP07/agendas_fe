@@ -1,38 +1,290 @@
-.App {
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #070707;
+  color: #F5F5F5;
+}
+
+tbody {
+  width: 100%;
+  height: 100%;
+}
+
+th {
+  text-align: left;
+  border-bottom: #7effd6 1px solid;
+  padding: 10px;
+}
+
+.stock-cell {
+  width: 100%;
+  padding: 17.5px
+}
+
+.back {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.row:last-child > th {
+  border: none
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.row:hover {
+  background-color: #263132;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.light {
+  font-weight: lighter;
+}
+
+.container {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.nav {
+  position: absolute;
+  background-color: #0f2224;
+  width: 100vw;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: #66E1BA 2px solid;
+}
+
+.nav-ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.nav-ul > li {
+  height: 45px;
+  display: grid;
+  place-items: center;
+  margin: 0 10px 0 10px
+}
+
+.auth-btn {
+  background-color: #7effd6;
+  padding: 8px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn {
+  background-color: #ff67a6;
+}
+
+.form-container {
+  display: grid;
+  place-items: center;
+  background-color: #405357;
+  border-radius: 10px;
+  min-height: 40px;
+  width: 300px;
+  text-align: left;
+  padding: 30px;
+  border-bottom: #66E1BA solid 3px;
+  border-right: #66E1BA solid 3px;
+}
+
+.form {
+  width: 100%;
+}
+
+.form-btn {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.form-title {
+  margin-bottom: 15px
+}
+
+.wallet-container {
+  background-color: #0f2224;
+  /* background-color: #405357; */
+  width: 500px;
+  height: 325px;
+  border-radius: 15px;
+}
+
+.transaction-container {
+  background-color: #0f2224;
+  width: 350px;
+  height: fit-content;
+  border-radius: 15px;
+  padding: 40px
+}
+
+.balance-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 70%;
+}
+
+.balance {
+  font-size: 80px;
+}
+
+.actions-container {
+  background-color: #25e2a6;
+  height: 30%;
+  width: 100%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  display: flex;
+}
+
+.action {
+  color: #070707;
+  border-right: #0f2224 1px solid;
+  width: 20%;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.buy-sell {
+  width: 50%;
+}
+
+.last {
+  border-right: none
+}
+
+.input-label, 
+.input-form {
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  background-color : rgb(113, 130, 132); 
+  border: none;
+  border-radius: 2px;
+  padding: 4px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.login-btn {
+  width: 48.5%;
+  margin-right: 7px;
+  height: 30px;
+  border-radius: 3px;
+  border: none;
+  background-color: rgb(180, 216, 221);
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signup-btn {
+  height: 30px;
+  width: 48.5%;
+  border-radius: 3px;
+  border: none;
+  background-color: #7effd6;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: rgb(124, 156, 160);
+}
+
+.signup-btn:hover, .auth-btn:hover, .action:active {
+  background-color: #25e2a6;
+}
+
+.first:active {
+  border-bottom-left-radius: 15px;
+}
+
+.last:active {
+  border-bottom-right-radius: 15px;
+}
+
+.logout-btn:hover {
+  background-color: #b74977;
+}
+
+.login-btn:active {
+  background-color: rgb(145, 174, 177);
+}
+
+.signup-btn:active, .auth-btn:active, .action:hover {
+  background-color: #b0ffe6;
+}
+
+.first:hover {
+  border-bottom-left-radius: 15px;
+}
+
+.last:hover {
+  border-bottom-right-radius: 15px;
+}
+
+.logout-btn:active {
+  background-color: #ff67a6;
+}
+
+a:link {
+  font-size: 14px;
+  color: #e4fbf4;
+}
+
+a:visited {
+  font-size: 14px;
+  color: #7EA2AA;
+}
+
+.link:link,
+.link:visited {
+  color: #070707;
+  text-decoration: none;
+}
+
+.text-error {
+  color: #ff67a6;
+  width: fit-content
+}
+
+.positive {
+  color: #4cfec6
+}
+
+.negative {
+  color: #ff67a6
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.display-none {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex > input {
+  width: 100%
+}
+
+.flex > div {
+  width: fit-content;
+  padding-right: 10px;
 }
