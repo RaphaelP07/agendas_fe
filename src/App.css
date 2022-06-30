@@ -6,10 +6,19 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-dark-blue: #00254a;
+  --main-med-blue: #45a2ff;
+  --main-light-blue: #a4cfff;
+  --main-white: #F6F4F5;
+  --main-dark-red: #582329;
+  --main-light-red: #c1848a;
+}
+
 body {
   font-family: "Lato", sans-serif;
-  background-color: #070707;
-  color: #F5F5F5;
+  background-color: var(--main-white);
+  color: black;
 }
 
 tbody {
@@ -19,7 +28,7 @@ tbody {
 
 th {
   text-align: left;
-  border-bottom: #7effd6 1px solid;
+  border-bottom: var(--main-med-blue) 1px solid;
   padding: 10px;
 }
 
@@ -54,12 +63,12 @@ th {
 
 .nav {
   position: absolute;
-  background-color: #0f2224;
+  background-color: var(--main-light-blue);
   width: 100vw;
   height: 50px;
   display: flex;
   justify-content: space-between;
-  border-bottom: #66E1BA 2px solid;
+  border-bottom: var(--main-dark-blue) 2px solid;
 }
 
 .nav-ul {
@@ -75,7 +84,8 @@ th {
 }
 
 .auth-btn {
-  background-color: #7effd6;
+  color: var(--main-white);
+  background-color: var(--main-dark-blue);
   padding: 8px;
   border-radius: 2px;
   border: none;
@@ -83,20 +93,20 @@ th {
 }
 
 .logout-btn {
-  background-color: #ff67a6;
+  background-color: var(--main-light-red);
 }
 
 .form-container {
   display: grid;
   place-items: center;
-  background-color: #405357;
+  background-color: var(--main-light-blue);
   border-radius: 10px;
   min-height: 40px;
   width: 300px;
   text-align: left;
   padding: 30px;
-  border-bottom: #66E1BA solid 3px;
-  border-right: #66E1BA solid 3px;
+  border-bottom: var(--main-dark-blue) solid 3px;
+  border-right: var(--main-dark-blue) solid 3px;
 }
 
 .form {
@@ -113,36 +123,8 @@ th {
   margin-bottom: 15px
 }
 
-.wallet-container {
-  background-color: #0f2224;
-  /* background-color: #405357; */
-  width: 500px;
-  height: 325px;
-  border-radius: 15px;
-}
-
-.transaction-container {
-  background-color: #0f2224;
-  width: 350px;
-  height: fit-content;
-  border-radius: 15px;
-  padding: 40px
-}
-
-.balance-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 70%;
-}
-
-.balance {
-  font-size: 80px;
-}
-
 .actions-container {
-  background-color: #25e2a6;
+  background-color: var(--main-light-blue);
   height: 30%;
   width: 100%;
   border-bottom-left-radius: 15px;
@@ -151,7 +133,7 @@ th {
 }
 
 .action {
-  color: #070707;
+  color: var(--main-white);
   border-right: #0f2224 1px solid;
   width: 20%;
   display: grid;
@@ -159,72 +141,58 @@ th {
   cursor: pointer;
 }
 
-.buy-sell {
-  width: 50%;
-}
-
-.last {
-  border-right: none
-}
-
 .input-label, 
 .input-form {
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 }
 
 input, textarea {
-  background-color : rgb(113, 130, 132); 
+  background-color : #c2ddff; 
   border: none;
   border-radius: 2px;
   padding: 4px;
-  color: white;
+  color: black;
 }
 
 .login-btn {
+  color: var(--main-white);
   width: 48.5%;
   margin-right: 7px;
   height: 30px;
   border-radius: 3px;
   border: none;
-  background-color: rgb(180, 216, 221);
+  background-color: #254e78;
   cursor: pointer;
 }
 
 .signup-btn {
+  color: var(--main-white);
   height: 30px;
   width: 48.5%;
   border-radius: 3px;
   border: none;
-  background-color: #7effd6;
+  background-color: var(--main-dark-blue);
   cursor: pointer;
 }
 
 .login-btn:hover {
-  background-color: rgb(124, 156, 160);
+  background-color: #3772ad;
 }
 
 .signup-btn:hover, .auth-btn:hover, .action:active {
-  background-color: #25e2a6;
-}
-
-.first:active {
-  border-bottom-left-radius: 15px;
-}
-
-.last:active {
-  border-bottom-right-radius: 15px;
+  background-color: #0058b0;
 }
 
 .logout-btn:hover {
-  background-color: #b74977;
+  background-color: var(--main-dark-red);
 }
 
 .login-btn:active {
-  background-color: rgb(145, 174, 177);
+  background-color: #254e78;
 }
 
 .signup-btn:active, .auth-btn:active, .action:hover {
-  background-color: #b0ffe6;
+  background-color: var(--main-light-blue);
 }
 
 .first:hover {
@@ -236,7 +204,7 @@ input, textarea {
 }
 
 .logout-btn:active {
-  background-color: #ff67a6;
+  background-color: var(--main-light-red);
 }
 
 a:link {
@@ -251,21 +219,17 @@ a:visited {
 
 .link:link,
 .link:visited {
-  color: #070707;
+  color: var(--main-white);
   text-decoration: none;
 }
 
 .text-error {
-  color: #ff67a6;
+  color: var(--main-light-red);
   width: fit-content
 }
 
-.positive {
-  color: #4cfec6
-}
-
 .negative {
-  color: #ff67a6
+  color: var(--main-light-red)
 }
 
 .visibility-hidden {
