@@ -4,6 +4,7 @@ import { GlobalContext } from "../context/GlobalState";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Nav from "./Nav";
+import Sidebar from "./Sidebar";
 
 
 const Dashboard = ({ setAlert }) => {
@@ -33,7 +34,12 @@ const Dashboard = ({ setAlert }) => {
   return (
     <div className='container'>
       <Nav />
-      Dashboard
+      <div className="dashboard-container">
+        <Sidebar />
+        <div className="dashboard-right">
+          Dashboard
+        </div>
+      </div>
     </div>
   )
 }
