@@ -30,6 +30,11 @@ export default (state, action) => {
       ...state,
       meetings: action.payload,
     };
+    case "SET_MEETING":
+    return {
+      ...state,
+      meeting: action.payload,
+    };
     default:
       return state;
   }

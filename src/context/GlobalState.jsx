@@ -8,7 +8,8 @@ const initialState = {
   org: {},
   teams: [],
   members: [],
-  meetings: []
+  meetings: [],
+  meeting: {}
 };
 
 // create context
@@ -62,6 +63,13 @@ export const GlobalProvider = ({ children, headers }) => {
     });
   }
 
+  function setMeeting(meeting) {
+    dispatch({
+      type: "SET_MEETING",
+      payload: meeting,
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -76,6 +84,7 @@ export const GlobalProvider = ({ children, headers }) => {
         setTeams,
         setMembers,
         setMeetings,
+        setMeeting,
         setOrgs,
         setOrg
       }}

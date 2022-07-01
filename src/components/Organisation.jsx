@@ -3,11 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
 import { useState, useContext, useEffect } from "react";
 import Sidebar from "./Sidebar";
+import Meeting from "./Meeting";
 import axios from "axios";
 
 const Organisation = ({ setAlert }) => {
   const navigate = useNavigate();
-  const { baseURL, token, setOrg, setTeams, setMembers, setMeetings, organisation, meetings, members } = useContext(GlobalContext);
+  const { 
+    baseURL,
+    token,
+    setOrg,
+    setTeams,
+    setMembers,
+    setMeetings,
+    setMeeting,
+    organisation,
+    meetings,
+    members 
+  } = useContext(GlobalContext);
 
   const getOrgContents = (org) => {
     axios({
@@ -66,8 +78,9 @@ const Organisation = ({ setAlert }) => {
 
   }, [])
 
-  const goToMeeting = () => {
-    return
+  const goToMeeting = (meeting) => {
+    setMeeting(meeting)
+    navigate(`/agendas/meetings/${meeting.id}`)
   }
 
   const admin = members === null ? '' :
@@ -75,8 +88,6 @@ const Organisation = ({ setAlert }) => {
       return member.id === organisation.admin_id
     }
   );
-
-  console.log()
 
   return (
     <div className="dashboard-container">
@@ -118,19 +129,19 @@ const Organisation = ({ setAlert }) => {
                   No meetings to show 
                 </th>
               </tr> : 
-              meetings.map(meeting => 
-                <tr className='row' onClick={() => goToMeeting(meeting.id)} key={meeting.id} >
-                  <th className='light'>
-                    {meeting.name}
-                  </th>
-                  <th className='light'>
-                    {meeting.schedule.slice(0, 10)},{" "}
-                    {meeting.schedule.slice(11, 16)}
-                  </th>
-                  <th className='light'>
-                    {meeting.synchronicity}
-                  </th>
-                </tr>
+                meetings.map(meeting => 
+                  <tr className='row' onClick={() => goToMeeting(meeting)} key={meeting.id} >
+                    <th className='light'>
+                      {meeting.name}
+                    </th>
+                    <th className='light'>
+                      {meeting.schedule.slice(0, 10)},{" "}
+                      {meeting.schedule.slice(11, 16)}
+                    </th>
+                    <th className='light'>
+                      {meeting.synchronicity}
+                    </th>
+                  </tr>
                 )
               }
             </tbody>

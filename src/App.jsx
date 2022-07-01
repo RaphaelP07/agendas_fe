@@ -9,6 +9,7 @@ import OrgPrompt from "./components/OrgPrompt";
 import OrgForm from "./components/OrgForm";
 import Dashboard from "./components/Dashboard";
 import Organisation from "./components/Organisation";
+import Meeting from "./components/Meeting";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState("");
@@ -59,6 +60,16 @@ function App() {
               />
             }
           />
+          <Route path="agendas/meetings">
+            <Route
+              path=':meetingId'
+              element={
+                <Meeting
+                  setAlert={(alert) => setAlert(alert)}
+                />
+              }
+            />
+          </Route>
           <Route
             path="/agendas/organisations"
             element={
@@ -71,12 +82,13 @@ function App() {
             }
           >
             <Route 
-              path=":id" 
+              path=":organisationId" 
               element={
                 <Organisation
                 setAlert={(alert) => setAlert(alert)}
                 />
-              }/>
+              }
+            />
           </Route>
           <Route path="/agendas/signup" element={<SignUp/>}/>
         </Routes>
