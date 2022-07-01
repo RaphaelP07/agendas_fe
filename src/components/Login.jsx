@@ -48,8 +48,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         setToken(token);
         setLoggedUser(email);
         setLoggedID(id);
-        localStorage.setItem("agendasLoggedID", id);
-        localStorage.setItem("agendasLoggedUser", email);
+        localStorage.setItem("agendasLoggedUser", JSON.stringify(res.data.data.user));
         localStorage.setItem("agendasToken", JSON.stringify(token));
         if (res.data.data.user.first_name === null && res.data.data.user.last_name === null) {
           navigate("/agendas/name-prompt");

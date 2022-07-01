@@ -10,6 +10,26 @@ export default (state, action) => {
         ...state,
         orgs: action.payload,
       };
+    case "SET_ORGANISATION":
+      return {
+        ...state,
+        org: action.payload,
+      };
+    case "SET_TEAMS":
+    return {
+      ...state,
+      teams: action.payload,
+    };
+    case "SET_MEMBERS":
+    return {
+      ...state,
+      members: action.payload,
+    };
+    case "SET_MEETINGS":
+    return {
+      ...state,
+      meetings: action.payload,
+    };
     default:
       return state;
   }

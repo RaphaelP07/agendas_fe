@@ -5,17 +5,13 @@ import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Nav from "./Nav";
 import Organisation from "./Organisation";
-import Sidebar from "./Sidebar";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const Dashboard = ({ setAlert }) => {
   const navigate = useNavigate();
-  const { baseURL, token, setOrgs } = useContext(GlobalContext);
+  const { baseURL, token, setOrgs, setOrg } = useContext(GlobalContext);
   const [organisations, setOrganisations] = useState([])
-  const [organisation, setOrganisation] = useState([])
-  const [meetings, setMeetings] = useState([])
-  const [teams, setTeams] = useState([])
-  const [members, setMembers] = useState([])
 
   useEffect(() => {
     if (localStorage.getItem('agendasToken') === null) {
@@ -38,7 +34,7 @@ const Dashboard = ({ setAlert }) => {
   }, [])
 
   const goToOrg = (org) => {
-    setOrganisation(org)
+    setOrg(org)
     navigate(`/agendas/organisations/${org.id}`)
   }
 
@@ -46,15 +42,10 @@ const Dashboard = ({ setAlert }) => {
     <div className='container'>
       <Nav />
       <div className="dashboard-container nav-offset">
-        <Sidebar 
-          organisation={organisation}
-          teams={teams}
-          members={members}
-        />
         {window.location.pathname === '/agendas/organisations' ? 
-          <div className="dashboard-right">
+          <div>
+            <h2>Select an organisation</h2>
             <div className='organisations-container'>
-              <h2>Select an organisation</h2>
               <br />
               {organisations.map(org => 
                 <div className="org-select-container" key={org.id} onClick={() => goToOrg(org)}>
@@ -66,12 +57,14 @@ const Dashboard = ({ setAlert }) => {
                   </p>
                 </div>
               )}
+              <div className="org-select-container" onClick={() => navigate('/agendas/org-prompt')}>
+                <div className="add-org">
+                  <FontAwesomeIcon icon={faPlus} />
+                </div>
               </div>
             </div>
-        : <Organisation 
-          organisation={organisation}
-          meetings={meetings}
-          />
+          </div>
+        : <Organisation />
         }
       </div>
     </div>

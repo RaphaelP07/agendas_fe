@@ -2,15 +2,11 @@ import React from 'react'
 import Members from "./Members";
 import Teams from "./Teams";
 
-const Sidebar = ({ teams, members }) => {
+const Sidebar = () => {
   return (
     <div className='side-bar'>
-      <Teams
-        teams={teams}
-      />
-      <Members 
-        members={members}
-      />
+      <Teams />
+      <Members />
     </div>
   )
 }

@@ -26,8 +26,10 @@ body {
 
 table {
   margin-top: 15px;
+  margin-bottom: 150px;
   background-color: var(--main-light-blue);
   border: var(--main-dark-blue) 1px solid;
+  width: 100%;
 }
 
 thead {
@@ -111,6 +113,14 @@ th {
   overflow-x: hidden;
 }
 
+.sidebar-label {
+  margin: 10px 0px 2px 8px;
+}
+
+.team-member {
+  margin: 3px 0px 2px 15px;
+}
+
 .nav-offset {
   padding-top: 48px;
 }
@@ -132,18 +142,25 @@ th {
   width: 100vw;
   height: 100vh;
   display: flex;
+  overflow: hidden;
 }
 
 .dashboard-right {
-  height: 100%;
+  height: max-content;
   width: 100%;
+  overflow: auto;
 }
 
 .organisations-container {
-  padding: 30px
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .org-select-container {
+  display: grid;
+  place-content: center;
+  margin: 10px;
   background-color: var(--main-light-blue);
   height: 120px;
   width: 200px;
@@ -155,6 +172,15 @@ th {
 
 .org-select-container:hover {
   background-color: var(--main-lighter-blue);
+}
+
+.add-org {
+  font-size: 50px;
+  height: 100%;
+}
+
+.org-select-container:hover > .add-org {
+  color: var(--main-med-blue);
 }
 
 .organisation {
@@ -170,7 +196,7 @@ th {
 }
 
 .organisation-action {
-  height: 50%;
+  height: fit-content;
   width: 100%;
   border-bottom: var(--main-med-blue) solid 1px;
   padding: 30px
@@ -178,7 +204,7 @@ th {
 
 .meetings-container {
   color: black;
-  height: 50%;
+  height: 100%;
   width: 100%;
   padding: 30px;
   background-color: var(--main-white);
@@ -387,6 +413,18 @@ input, textarea {
 
 .logout-btn:active {
   background-color: var(--main-dark-red);
+}
+
+.org-action-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+
+.org-action-btn {
+  width: 65px;
+  margin: 5px;
+  margin-top: 10px;
 }
 
 a:link {
