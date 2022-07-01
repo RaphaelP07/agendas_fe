@@ -70,7 +70,13 @@ function App() {
               />
             }
           >
-            <Route path=":id" element={<Organisation />} />
+            <Route 
+              path=":id" 
+              element={
+                <Organisation
+                setAlert={(alert) => setAlert(alert)}
+                />
+              }/>
           </Route>
           <Route path="/agendas/signup" element={<SignUp/>}/>
         </Routes>

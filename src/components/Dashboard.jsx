@@ -13,6 +13,9 @@ const Dashboard = ({ setAlert }) => {
   const { baseURL, token, setOrgs } = useContext(GlobalContext);
   const [organisations, setOrganisations] = useState([])
   const [organisation, setOrganisation] = useState([])
+  const [meetings, setMeetings] = useState([])
+  const [teams, setTeams] = useState([])
+  const [members, setMembers] = useState([])
 
   useEffect(() => {
     if (localStorage.getItem('agendasToken') === null) {
@@ -43,23 +46,33 @@ const Dashboard = ({ setAlert }) => {
     <div className='container'>
       <Nav />
       <div className="dashboard-container nav-offset">
-        <Sidebar />
+        <Sidebar 
+          organisation={organisation}
+          teams={teams}
+          members={members}
+        />
         {window.location.pathname === '/agendas/organisations' ? 
           <div className="dashboard-right">
-            <h2>Select an organisation</h2>
-            <br />
-            {organisations.map(org => 
-              <div className="org-select-container" key={org.id} onClick={() => goToOrg(org)}>
-                <h4>
-                  {org.name}
-                </h4>
-                <p>
-                  {org.city_address}
-                </p>
+            <div className='organisations-container'>
+              <h2>Select an organisation</h2>
+              <br />
+              {organisations.map(org => 
+                <div className="org-select-container" key={org.id} onClick={() => goToOrg(org)}>
+                  <h4>
+                    {org.name}
+                  </h4>
+                  <p>
+                    {org.city_address}
+                  </p>
+                </div>
+              )}
               </div>
-            )}
             </div>
-        : <Organisation />}
+        : <Organisation 
+          organisation={organisation}
+          meetings={meetings}
+          />
+        }
       </div>
     </div>
   )

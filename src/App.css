@@ -24,6 +24,16 @@ body {
   color: black;
 }
 
+table {
+  margin-top: 15px;
+  background-color: var(--main-light-blue);
+  border: var(--main-dark-blue) 1px solid;
+}
+
+thead {
+  background-color: var(--main-light-grey);
+}
+
 tbody {
   width: 100%;
   height: 100%;
@@ -32,6 +42,7 @@ tbody {
 th {
   text-align: left;
   border-bottom: var(--main-med-blue) 1px solid;
+  border-left: var(--main-med-blue) 1px solid;
   padding: 10px;
 }
 
@@ -44,12 +55,9 @@ th {
   text-align: center;
 }
 
-.row:last-child > th {
-  border: none
-}
 
 .row:hover {
-  background-color: #263132;
+  background-color: var(--main-lighter-blue);
   cursor: pointer;
 }
 
@@ -129,6 +137,9 @@ th {
 .dashboard-right {
   height: 100%;
   width: 100%;
+}
+
+.organisations-container {
   padding: 30px
 }
 
@@ -147,12 +158,30 @@ th {
 }
 
 .organisation {
-  background-color: var(--main-lighter-blue);
+  background-color: var(--main-white);
   /* position: absolute; */
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.organisation-action {
+  height: 50%;
+  width: 100%;
+  border-bottom: var(--main-med-blue) solid 1px;
+  padding: 30px
+}
+
+.meetings-container {
+  color: black;
+  height: 50%;
+  width: 100%;
+  padding: 30px;
+  background-color: var(--main-white);
 }
 
 .slogan {

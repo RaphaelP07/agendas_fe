@@ -15,7 +15,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
 
   useEffect(() => {
     if (localStorage.getItem('agendasToken') !== null) {
-      navigate("/agendas/dashboard")
+      navigate("/agendas/organisations")
     }
   }, [])
   
@@ -64,7 +64,8 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
           setFormError(true);
           setMessage(error.response.data)
         }
-      });
+      }
+    )
   };
 
   return (

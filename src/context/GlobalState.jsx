@@ -4,7 +4,8 @@ import AppReducer from "./AppReducer";
 // initial state
 const initialState = {
   token: localStorage.getItem('agendasToken') === null ? '' : JSON.parse(localStorage.getItem('agendasToken')),
-  orgs: []
+  orgs: [],
+  org: {}
 };
 
 // create context
@@ -30,14 +31,23 @@ export const GlobalProvider = ({ children, headers }) => {
     });
   }
 
+  function setOrg(org) {
+    dispatch({
+      type: "SET_ORGANISATIONS",
+      payload: org,
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         token: state.token,
         baseURL: baseURL,
         orgs: state.orgs,
+        // organisation: state.org,
         setToken,
         setOrgs
+        // setOrg
       }}
     >
       {children}
