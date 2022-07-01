@@ -1,7 +1,19 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../context/GlobalState";
+import { useEffect } from "react";
 import Nav from "./Nav";
 
-const OrgPrompt = () => {
+const OrgPrompt = ({ setAlert }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('agendasToken') === null) {
+      navigate('/agendas/login')
+      setAlert("You have to login before continuing")
+    }
+  }, [])
+
   return (
     <div className='container'>
       <Nav />

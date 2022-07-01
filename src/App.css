@@ -12,7 +12,8 @@
   --main-light-blue: #a4cfff;
   --main-white: #F6F4F5;
   --main-dark-red: #6f242d;
-  --main-light-red: #af2d3a;
+  --main-med-red: #af2d3a;
+  --main-light-red: #b16169;
 }
 
 body {
@@ -270,7 +271,7 @@ input, textarea {
 }
 
 .logout-btn:hover {
-  background-color: var(--main-light-red);
+  background-color: var(--main-med-red);
 }
 
 .login-btn:active {
@@ -314,12 +315,12 @@ a:visited {
 }
 
 .text-error {
-  color: var(--main-light-red);
+  color: var(--main-med-red);
   width: fit-content
 }
 
 .negative {
-  color: var(--main-light-red)
+  color: var(--main-med-red)
 }
 
 .visibility-hidden {
@@ -345,4 +346,53 @@ a:visited {
 
 .text-center {
   text-align: center
+}
+
+.alert {
+  position: absolute;
+  top: 75px;
+  left: 25px;
+  z-index: 1;
+  width: 100vw;
+}
+
+.alert > p {
+  color: var(--main-white);
+  background-color: var(--main-light-red);
+  width: fit-content;
+  padding: 12px;
+  border: var(--main-dark-red) 1px solid;
+  border-radius: 10px
+}
+
+.alert {
+  -webkit-animation: fadeout 5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadeout 5s; /* Firefox < 16 */
+  -ms-animation: fadeout 5s; /* Internet Explorer */
+  -o-animation: fadeout 5s; /* Opera < 12.1 */
+  animation: fadeout 5s;
+  opacity: 0;
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }

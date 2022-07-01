@@ -11,10 +11,14 @@ import Dashboard from "./components/Dashboard";
 function App() {
   const [loggedUser, setLoggedUser] = useState("");
   const [loggedID, setLoggedID] = useState("");
+  const [alert, setAlert] = useState('')
 
   return (
     <Router>
       <GlobalProvider>
+        <div className={alert === '' ? '' : 'alert'}>
+          <p>{alert}</p>
+        </div>
         <Routes>
           <Route
             path="/agendas/login"
@@ -30,9 +34,7 @@ function App() {
             path="/agendas/name-prompt"
             element={
               <NamePrompt
-              loggedUser={loggedUser}
-              setLoggedUser={(email) => setLoggedUser(email)}
-              setLoggedID={(id) => setLoggedID(id)}
+              setAlert={(alert) => setAlert(alert)}
               />
             }
           />
@@ -40,9 +42,7 @@ function App() {
             path="/agendas/org-prompt"
             element={
               <OrgPrompt
-                loggedUser={loggedUser}
-                setLoggedUser={(email) => setLoggedUser(email)}
-                setLoggedID={(id) => setLoggedID(id)}
+                setAlert={(alert) => setAlert(alert)}
               />
             }
           />
@@ -53,6 +53,7 @@ function App() {
                 loggedUser={loggedUser}
                 setLoggedUser={(email) => setLoggedUser(email)}
                 setLoggedID={(id) => setLoggedID(id)}
+                setAlert={(alert) => setAlert(alert)}
               />
             }
           />

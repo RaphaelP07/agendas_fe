@@ -13,6 +13,13 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
   const [formError, setFormError] = useState(false);
   const [message, setMessage] = useState('')
 
+  useEffect(() => {
+    if (localStorage.getItem('agendasToken') !== null) {
+      navigate("/agendas/dashboard")
+    }
+  }, [])
+  
+
   const onChange = (e) => {
     switch (e.target.id) {
       case "email":
@@ -34,10 +41,11 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         }
       })
       .then((res) => {
+        console.log(res.data.data.is_in_org)
         const token = {
           authorization: res.headers.authorization
         };
-        const id = res.data.data.id;
+        const id = res.data.data.user.id;
         setToken(token);
         setLoggedUser(email);
         setLoggedID(id);
@@ -46,7 +54,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         localStorage.setItem("agendasToken", JSON.stringify(token));
         if (res.data.data.user.first_name === null && res.data.data.user.last_name === null) {
           navigate("/agendas/name-prompt");
-        } else if (res.data.data.orgs.length === 0) {
+        } else if (res.data.data.is_in_org === false) {
           navigate("/agendas/org-prompt");
         } else {
           navigate("/agendas/dashboard")

@@ -5,13 +5,20 @@ import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Nav from "./Nav";
 
-const NamePrompt = () => {
+const NamePrompt = ({ setAlert }) => {
   const navigate = useNavigate();
   const { baseURL, token } = useContext(GlobalContext);
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [formError, setFormError] = useState(false);
   const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    if (localStorage.getItem('agendasToken') === null) {
+      navigate('/agendas/login')
+      setAlert("You have to login before continuing")
+    }
+  }, [])
 
   const onChange = (e) => {
     switch (e.target.id) {
