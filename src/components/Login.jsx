@@ -41,7 +41,6 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         }
       })
       .then((res) => {
-        console.log(res.data.data.is_in_org)
         const token = {
           authorization: res.headers.authorization
         };
@@ -57,7 +56,7 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         } else if (res.data.data.is_in_org === false) {
           navigate("/agendas/org-prompt");
         } else {
-          navigate("/agendas/dashboard")
+          navigate("/agendas/organisations")
         }
       })
       .catch((error) => {

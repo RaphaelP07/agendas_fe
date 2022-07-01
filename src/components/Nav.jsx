@@ -5,7 +5,7 @@ import { useContext } from "react";
 import axios from "axios";
 
 const Nav = () => {
-  const { baseURL, token, setToken } = useContext(GlobalContext);
+  const { baseURL, token, setToken, orgs } = useContext(GlobalContext);
   const navigate = useNavigate()
 
   const logout = () => {
@@ -28,7 +28,8 @@ const Nav = () => {
       <div className="nav-mid"></div>
       <div className="nav-right">
         <ul className='nav-ul'>
-          <li>About</li>
+          {window.location.pathname.slice(0, 22) === '/agendas/organisations' ? 
+          '' : <li>About</li> }
           <li>
             {window.location.pathname === "/agendas/login" &&
               <Link to="/agendas/signup">

@@ -3,7 +3,8 @@ import AppReducer from "./AppReducer";
 
 // initial state
 const initialState = {
-  token: localStorage.getItem('agendasToken') === null ? '' : localStorage.getItem('agendasToken')
+  token: localStorage.getItem('agendasToken') === null ? '' : JSON.parse(localStorage.getItem('agendasToken')),
+  orgs: []
 };
 
 // create context
@@ -22,12 +23,21 @@ export const GlobalProvider = ({ children, headers }) => {
     });
   }
 
+  function setOrgs(orgs) {
+    dispatch({
+      type: "SET_ORGANISATIONS",
+      payload: orgs,
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         token: state.token,
         baseURL: baseURL,
-        setToken
+        orgs: state.orgs,
+        setToken,
+        setOrgs
       }}
     >
       {children}

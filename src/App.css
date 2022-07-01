@@ -10,6 +10,7 @@
   --main-dark-blue: #00254a;
   --main-med-blue: #45a2ff;
   --main-light-blue: #a4cfff;
+  --main-lighter-blue: #c7dffb;
   --main-white: #F6F4F5;
   --main-dark-red: #6f242d;
   --main-med-red: #af2d3a;
@@ -102,8 +103,8 @@ th {
   overflow-x: hidden;
 }
 
-.sidebar-offset {
-  height: 50px;
+.nav-offset {
+  padding-top: 48px;
 }
 
 .main-container {
@@ -126,10 +127,32 @@ th {
 }
 
 .dashboard-right {
-  height: 100vh;
+  height: 100%;
   width: 100%;
-  display: grid;
-  place-content: center;
+  padding: 30px
+}
+
+.org-select-container {
+  background-color: var(--main-light-blue);
+  height: 120px;
+  width: 200px;
+  border-radius: 5px;
+  padding: 20px;
+  border: 1px solid var(--main-med-blue);
+  cursor: pointer;
+}
+
+.org-select-container:hover {
+  background-color: var(--main-lighter-blue);
+}
+
+.organisation {
+  background-color: var(--main-lighter-blue);
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .slogan {

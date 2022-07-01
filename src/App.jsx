@@ -8,6 +8,7 @@ import NamePrompt from "./components/NamePrompt";
 import OrgPrompt from "./components/OrgPrompt";
 import OrgForm from "./components/OrgForm";
 import Dashboard from "./components/Dashboard";
+import Organisation from "./components/Organisation";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState("");
@@ -59,7 +60,7 @@ function App() {
             }
           />
           <Route
-            path="/agendas/dashboard"
+            path="/agendas/organisations"
             element={
               <Dashboard
                 loggedUser={loggedUser}
@@ -68,7 +69,9 @@ function App() {
                 setAlert={(alert) => setAlert(alert)}
               />
             }
-          />
+          >
+            <Route path=":id" element={<Organisation />} />
+          </Route>
           <Route path="/agendas/signup" element={<SignUp/>}/>
         </Routes>
       </GlobalProvider>

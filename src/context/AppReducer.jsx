@@ -5,6 +5,11 @@ export default (state, action) => {
         ...state,
         token: action.payload,
       };
+    case "SET_ORGANISATIONS":
+      return {
+        ...state,
+        orgs: action.payload,
+      };
     default:
       return state;
   }

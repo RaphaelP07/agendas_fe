@@ -52,7 +52,7 @@ const OrgForm = ({ orgAction, setAlert }) => {
           city_address: orgAddress
         }
       }).then((res) => {
-        navigate("/agendas/dashboard");
+        navigate("/agendas/organisations");
       }).catch((error) => {
         if (error) {
           setFormError(true);

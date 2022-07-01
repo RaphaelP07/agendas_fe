@@ -5,11 +5,8 @@ import Teams from "./Teams";
 const Sidebar = () => {
   return (
     <div className='side-bar'>
-      <div className="sidebar-offset"></div>
-      <div>
-        <Teams />
-        <Members />
-      </div>
+      <Teams />
+      <Members />
     </div>
   )
 }
