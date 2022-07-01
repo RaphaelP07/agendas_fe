@@ -3,7 +3,7 @@ import AppReducer from "./AppReducer";
 
 // initial state
 const initialState = {
-  token: ''
+  token: localStorage.getItem('agendasToken') === null ? '' : localStorage.getItem('agendasToken')
 };
 
 // create context
@@ -12,7 +12,7 @@ export const GlobalContext = createContext(initialState);
 // provider component
 export const GlobalProvider = ({ children, headers }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
-  const baseURL = "http://localhost:3000.api/v1";
+  const baseURL = "http://localhost:3000/api/v1";
 
   //Actions
   function setToken(token) {

@@ -28,8 +28,8 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
     e.preventDefault();
 
     axios
-      .post(`${baseURL}/api/v1login`, {
-        user: {
+      .post(`${baseURL}/login`, {
+        api_v1_user: {
           email: email,
           password: password
         }
@@ -42,10 +42,14 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         setToken(token);
         setLoggedUser(email);
         setLoggedID(id);
-        localStorage.setItem("loggedID", id);
-        localStorage.setItem("loggedUser", email);
-        localStorage.setItem("headers", JSON.stringify(token));
-        navigate("/agendas/prompt");
+        localStorage.setItem("agendasLoggedID", id);
+        localStorage.setItem("agendasLoggedUser", email);
+        localStorage.setItem("agendasToken", JSON.stringify(token));
+        if (res.data.data.first_name === null && res.data.data.last_name === null) {
+          navigate("/agendas/prompt");
+        } else {
+          navigate("/agendas/dashboard");
+        }
       })
       .catch((error) => {
         if (error) {

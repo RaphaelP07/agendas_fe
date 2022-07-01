@@ -11,8 +11,8 @@
   --main-med-blue: #45a2ff;
   --main-light-blue: #a4cfff;
   --main-white: #F6F4F5;
-  --main-dark-red: #582329;
-  --main-light-red: #c1848a;
+  --main-dark-red: #6f242d;
+  --main-light-red: #af2d3a;
 }
 
 body {
@@ -83,6 +83,13 @@ th {
   margin: 0 10px 0 10px
 }
 
+.main-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
 .auth-container {
   display: flex;
   justify-content: center;
@@ -130,7 +137,7 @@ th {
 }
 
 .logout-btn {
-  background-color: var(--main-light-red);
+  background-color: var(--main-dark-red);
 }
 
 .form-container {
@@ -147,6 +154,23 @@ th {
 
 .form {
   width: 100%;
+}
+
+.prompt-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prompt-form > input {
+  text-align: center;
+}
+
+.long-form {
+  width: 65vw;
+  height: 60px;
+  margin: 20px;
+  font-size: 35px;
 }
 
 .form-btn {
@@ -211,6 +235,17 @@ input, textarea {
   cursor: pointer;
 }
 
+.prompt-btn {
+  color: var(--main-white);
+  width: 70%;
+  margin: 17px;
+  height: 45px;
+  border-radius: 3px;
+  border: none;
+  background-color: #254e78;
+  cursor: pointer;
+}
+
 .login-btn:hover {
   background-color: #3772ad;
 }
@@ -220,7 +255,7 @@ input, textarea {
 }
 
 .logout-btn:hover {
-  background-color: var(--main-dark-red);
+  background-color: var(--main-light-red);
 }
 
 .login-btn:active {
@@ -240,7 +275,7 @@ input, textarea {
 }
 
 .logout-btn:active {
-  background-color: var(--main-light-red);
+  background-color: var(--main-dark-red);
 }
 
 a:link {

@@ -45,8 +45,8 @@ const SignUp = () => {
     } else 
     
     axios
-      .post(`${baseURL}signup`, {
-        user: {
+      .post(`${baseURL}/signup`, {
+        api_v1_user: {
           email: email,
           password: password
         }

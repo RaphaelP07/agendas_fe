@@ -4,6 +4,8 @@ import { GlobalProvider } from "./context/GlobalState";
 import { useState, useEffect } from "react";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import NamePrompt from "./components/NamePrompt";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState("");
@@ -17,6 +19,26 @@ function App() {
             path="/agendas/login"
             element={
               <Login
+                loggedUser={loggedUser}
+                setLoggedUser={(email) => setLoggedUser(email)}
+                setLoggedID={(id) => setLoggedID(id)}
+              />
+            }
+          />
+          <Route
+            path="/agendas/prompt"
+            element={
+              <NamePrompt
+                loggedUser={loggedUser}
+                setLoggedUser={(email) => setLoggedUser(email)}
+                setLoggedID={(id) => setLoggedID(id)}
+              />
+            }
+          />
+          <Route
+            path="/agendas/dashboard"
+            element={
+              <Dashboard
                 loggedUser={loggedUser}
                 setLoggedUser={(email) => setLoggedUser(email)}
                 setLoggedID={(id) => setLoggedID(id)}
