@@ -36,7 +36,7 @@ const NamePrompt = () => {
         last_name: lastName
       }
     }).then((res) => {
-      navigate("/agendas/dashboard");
+      navigate("/agendas/org-prompt");
     }).catch((error) => {
       if (error) {
         setFormError(true);

@@ -26,7 +26,6 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     axios
       .post(`${baseURL}/login`, {
         api_v1_user: {
@@ -45,10 +44,12 @@ const Login = ({ setLoggedUser, setLoggedID }) => {
         localStorage.setItem("agendasLoggedID", id);
         localStorage.setItem("agendasLoggedUser", email);
         localStorage.setItem("agendasToken", JSON.stringify(token));
-        if (res.data.data.first_name === null && res.data.data.last_name === null) {
-          navigate("/agendas/prompt");
+        if (res.data.data.user.first_name === null && res.data.data.user.last_name === null) {
+          navigate("/agendas/name-prompt");
+        } else if (res.data.data.orgs.length === 0) {
+          navigate("/agendas/org-prompt");
         } else {
-          navigate("/agendas/dashboard");
+          navigate("/agendas/dashboard")
         }
       })
       .catch((error) => {

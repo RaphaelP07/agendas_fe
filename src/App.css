@@ -246,11 +246,26 @@ input, textarea {
   cursor: pointer;
 }
 
+.org-prompt-btn {
+  color: var(--main-white);
+  width: 100%;
+  margin-top: 20px;
+  height: 75px;
+  border-radius: 3px;
+  border: none;
+  background-color: #254e78;
+  cursor: pointer;
+}
+
 .login-btn:hover {
   background-color: #3772ad;
 }
 
-.signup-btn:hover, .auth-btn:hover, .action:active {
+.signup-btn:hover,
+.auth-btn:hover,
+.action:active,
+.prompt-btn:hover,
+.org-prompt-btn:hover {
   background-color: #0058b0;
 }
 
@@ -262,7 +277,11 @@ input, textarea {
   background-color: #254e78;
 }
 
-.signup-btn:active, .auth-btn:active, .action:hover {
+.signup-btn:active,
+.auth-btn:active,
+.action:hover,
+.prompt-btn:active,
+.org-prompt-btn:active {
   background-color: var(--main-dark-blue);
 }
 
@@ -322,4 +341,8 @@ a:visited {
 .flex > div {
   width: fit-content;
   padding-right: 10px;
+}
+
+.text-center {
+  text-align: center
 }
