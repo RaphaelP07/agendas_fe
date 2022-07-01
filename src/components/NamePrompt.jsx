@@ -26,7 +26,7 @@ const NamePrompt = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(token)
+    
     axios({
       method: "post",
       url: `${baseURL}/users/name`,
