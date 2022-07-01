@@ -6,12 +6,14 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import NamePrompt from "./components/NamePrompt";
 import OrgPrompt from "./components/OrgPrompt";
+import OrgForm from "./components/OrgForm";
 import Dashboard from "./components/Dashboard";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState("");
   const [loggedID, setLoggedID] = useState("");
   const [alert, setAlert] = useState('')
+  const [orgAction, setOrgAction] = useState('')
 
   return (
     <Router>
@@ -34,7 +36,7 @@ function App() {
             path="/agendas/name-prompt"
             element={
               <NamePrompt
-              setAlert={(alert) => setAlert(alert)}
+                setAlert={(alert) => setAlert(alert)}
               />
             }
           />
@@ -42,6 +44,16 @@ function App() {
             path="/agendas/org-prompt"
             element={
               <OrgPrompt
+                setAlert={(alert) => setAlert(alert)}
+                setOrgAction={(action) => setOrgAction(action)}
+              />
+            }
+          />
+          <Route
+            path="/agendas/org-form"
+            element={
+              <OrgForm
+                orgAction={orgAction}
                 setAlert={(alert) => setAlert(alert)}
               />
             }

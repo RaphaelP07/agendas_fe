@@ -258,24 +258,22 @@ input, textarea {
   cursor: pointer;
 }
 
-.login-btn:hover {
-  background-color: #3772ad;
+.back {
+  background-color: var(--main-dark-blue);
+}
+
+.org-form-buttons {
+  display: flex;
+  width: 90%
 }
 
 .signup-btn:hover,
+.back:hover,
 .auth-btn:hover,
 .action:active,
 .prompt-btn:hover,
 .org-prompt-btn:hover {
   background-color: #0058b0;
-}
-
-.logout-btn:hover {
-  background-color: var(--main-med-red);
-}
-
-.login-btn:active {
-  background-color: #254e78;
 }
 
 .signup-btn:active,
@@ -286,12 +284,18 @@ input, textarea {
   background-color: var(--main-dark-blue);
 }
 
-.first:hover {
-  border-bottom-left-radius: 15px;
+.login-btn:hover,
+.back:hover {
+  background-color: #3772ad;
 }
 
-.last:hover {
-  border-bottom-right-radius: 15px;
+.login-btn:active,
+.back:active {
+  background-color: #254e78;
+}
+
+.logout-btn:hover {
+  background-color: var(--main-med-red);
 }
 
 .logout-btn:active {

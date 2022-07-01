@@ -1,10 +1,9 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
-import { GlobalContext } from "../context/GlobalState";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Nav from "./Nav";
 
-const OrgPrompt = ({ setAlert }) => {
+const OrgPrompt = ({ setAlert, setOrgAction }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,8 +19,12 @@ const OrgPrompt = ({ setAlert }) => {
       <div className="main-container">
         <h1 className='text-center'>Be part of an organisation:</h1>
         <br />
-        <button className='org-prompt-btn'>CREATE ORGANISATION</button>
-        <button className='org-prompt-btn'>JOIN ORGANISATION</button>
+        <Link to="/agendas/org-form" onClick={() => setOrgAction('create')}>
+          <button className='org-prompt-btn'>CREATE ORGANISATION</button>
+        </Link>
+        <Link to="/agendas/org-form" onClick={() => setOrgAction('join')}>
+          <button className='org-prompt-btn'>JOIN ORGANISATION</button>
+        </Link>
       </div>
     </div>
   )
