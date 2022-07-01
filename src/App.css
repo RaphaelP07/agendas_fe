@@ -97,7 +97,7 @@ th {
 }
 
 .side-bar {
-  z-index: -1;
+  z-index: 0;
   height: 100%;
   width: 260px;
   border: var(--main-med-blue) 1px solid;
@@ -113,12 +113,58 @@ th {
   overflow-x: hidden;
 }
 
+.label-container {
+  display: flex;
+  align-items: center;
+}
+
 .sidebar-label {
-  margin: 10px 0px 2px 8px;
+  margin: 10px 0px 5px 8px;
+}
+
+.floating-icon {
+  padding: 5px;
+  width: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  left: 5px
+}
+
+.rotate {
+  transform: rotate(-90deg);
 }
 
 .team-member {
-  margin: 3px 0px 2px 15px;
+  padding: 3px 0px 2px 15px;
+  cursor: pointer;
+}
+
+.team-member:hover,
+.floating-icon:hover {
+  background-color: rgb(202, 202, 202);
+}
+
+.show-container {
+  position: absolute;
+  top: 10vh;
+  left: 10vw;
+  height: fit-content;
+  width: 80vw;
+  padding: 20px;
+  background-color: var(--main-light-blue);
+  border-radius: 5px;
+  border: var(--main-med-blue) 1px solid;
+  z-index: 1;
+}
+
+.x {
+  cursor: pointer;
+}
+
+.info {
+  margin: 20px 20px 30px 20px;
 }
 
 .nav-offset {
@@ -524,4 +570,13 @@ a:visited {
 @-ms-keyframes fadeout {
   from { opacity: 1; }
   to   { opacity: 0; }
+}
+
+.disable-highlight {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }

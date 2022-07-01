@@ -2,20 +2,46 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
 import { useState, useContext, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import ViewItem from "./ViewItem";
 import axios from "axios";
+
 
 const Teams = () => {
   const navigate = useNavigate();
   const { baseURL, token, teams } = useContext(GlobalContext);
+  const [showTeam, setShowTeam] = useState(false)
+  const [showTeams, setShowTeams] = useState(false)
+  const [viewTeam, setViewTeam] = useState({})
 
   return (
     <div>
-      <div className='sidebar-label'>
-        Teams
+      {showTeam && 
+        <ViewItem 
+          setShowTeam={(set) => setShowTeam(set)} 
+          viewTeam={viewTeam} />
+      }
+      <div className="label-container">
+        <div className='sidebar-label disable-highlight'>
+          Teams
+        </div>
+        <FontAwesomeIcon
+            icon={faCaretDown}
+            className={`floating-icon ${!showTeams && "rotate"}`}
+            onClick={() => setShowTeams(!showTeams)}
+          />
       </div>
       <div>
-        {teams.map(team => 
-          <div className="team-member light" key={team.id}>{team.name}</div>
+        {showTeams && teams.map(team => 
+          <div 
+            className="team-member disable-highlight light" 
+            key={team.id}
+            onClick={() => setShowTeam(true)}
+            onMouseUp={() => setViewTeam(team)}
+          >
+            {team.name}
+          </div>
         )}
       </div>
     </div>
