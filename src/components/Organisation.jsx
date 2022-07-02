@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
 import { useState, useContext, useEffect } from "react";
 import Sidebar from "./Sidebar";
-import Meeting from "./Meeting";
+import ViewItem from "./ViewItem";
 import axios from "axios";
 
 const Organisation = ({ setAlert }) => {
@@ -20,6 +20,8 @@ const Organisation = ({ setAlert }) => {
     meetings,
     members 
   } = useContext(GlobalContext);
+  const [showMeeting, setShowMeeting] = useState(false)
+  const [viewMeeting, setViewMeeting] = useState({})
 
   const getOrgContents = (org) => {
     axios({
@@ -51,6 +53,14 @@ const Organisation = ({ setAlert }) => {
     }).catch((error) => {
       console.log('get members', error)
     });
+  }
+
+  const setShowTeam = () => {
+    return
+  }
+
+  const setShowMember = () => {
+    return
   }
   
   useEffect(() => {
@@ -92,6 +102,13 @@ const Organisation = ({ setAlert }) => {
   return (
     <div className="dashboard-container">
       <Sidebar />
+      {showMeeting && 
+        <ViewItem 
+          setShowMember={(set) => setShowMember(set)} 
+          setShowTeam={(set) => setShowTeam(set)} 
+          setShowMeeting={(set) => setShowMeeting(set)} 
+          viewMeeting={viewMeeting} />
+      }
       <div className='dashboard-right organisation'>
         <div className="organisation-action">
           <h3>
@@ -130,7 +147,12 @@ const Organisation = ({ setAlert }) => {
                 </th>
               </tr> : 
                 meetings.map(meeting => 
-                  <tr className='row' onClick={() => goToMeeting(meeting)} key={meeting.id} >
+                  <tr 
+                    className='row' 
+                    onClick={() => setShowMeeting(true)}
+                    onMouseUp={() => setViewMeeting(meeting)}
+                    key={meeting.id}
+                  >
                     <th className='light'>
                       {meeting.name}
                     </th>

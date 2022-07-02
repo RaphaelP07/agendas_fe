@@ -36,6 +36,7 @@ const Dashboard = ({ setAlert }) => {
   const goToOrg = (org) => {
     setOrg(org)
     navigate(`/agendas/organisations/${org.id}`)
+    localStorage.setItem('agendasOrganisation', JSON.stringify(org))
   }
 
   return (

@@ -225,7 +225,8 @@ th {
   height: 100%;
 }
 
-.org-select-container:hover > .add-org {
+.org-select-container:hover > .add-org,
+.video-container:hover {
   color: var(--main-med-blue);
 }
 
@@ -254,6 +255,34 @@ th {
   width: 100%;
   padding: 30px;
   background-color: var(--main-white);
+}
+
+.videos-container {
+  height: 100vh;
+  width: 100vw;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.async-container {
+  padding: 90px 50px 40px 50px;
+}
+
+.video-container {
+  margin: 5px;
+  height: 225px;
+  width: 375px;
+  background-color: var(--main-light-blue);
+  border: var(--main-med-blue) 1px solid;
+  font-size: 100px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+.participant-container {
+  height: 0px;
 }
 
 .slogan {
@@ -521,6 +550,11 @@ a:visited {
 
 .text-center {
   text-align: center
+}
+
+.pointer {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .alert {

@@ -15,11 +15,21 @@ const Teams = () => {
   const [showTeams, setShowTeams] = useState(false)
   const [viewTeam, setViewTeam] = useState({})
 
+  const setShowMember = () => {
+    return
+  }
+  
+  const setShowMeeting = () => {
+    return
+  }
+
   return (
     <div>
       {showTeam && 
         <ViewItem 
-          setShowTeam={(set) => setShowTeam(set)} 
+          setShowTeam={(set) => setShowTeam(set)}
+          setShowMember={(set) => setShowMember(set)}
+          setShowMeeting={(set) => setShowMeeting(set)}
           viewTeam={viewTeam} />
       }
       <div className="label-container">

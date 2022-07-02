@@ -18,6 +18,10 @@ const Members = () => {
   const setShowTeam = () => {
     return
   }
+  
+  const setShowMeeting = () => {
+    return
+  }
 
   return (
     <div>
@@ -25,6 +29,7 @@ const Members = () => {
         <ViewItem 
           setShowMember={(set) => setShowMember(set)} 
           setShowTeam={(set) => setShowTeam(set)} 
+          setShowMeeting={(set) => setShowMeeting(set)} 
 
           user={user} />
       }
