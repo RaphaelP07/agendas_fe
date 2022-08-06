@@ -4,9 +4,10 @@ import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import Form from "./Form";
 import axios from "axios";
 
-const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, viewMeeting }) => {
+const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, viewMeeting, showForm, setShowForm, formType, setFormType }) => {
   const navigate = useNavigate();
   const view =
     user === undefined && viewMeeting === undefined ? viewTeam : 
@@ -14,6 +15,7 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
   const { baseURL, token, organisation } = useContext(GlobalContext);
   const [teamMembers, setTeamMembers] = useState([])
   const [meetingParticipants, setMeetingParticipants] = useState([])
+  const [teamName, setTeamName] = useState("")
 
   useEffect(() => {
     if (view === viewTeam) {
@@ -39,6 +41,12 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
     }
   }, [])
 
+  const editForm = (name) => {
+    setShowForm(true)
+    setFormType('EDIT TEAM')
+    setTeamName(name)
+  }
+
   const close = () => {
     setShowMember(false)
     setShowTeam(false)
@@ -52,6 +60,12 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
   return (
     <div>
       <div className="prompt-bg" onClick={() => close()}></div>
+      {showForm && 
+        <Form 
+          setShowForm={(set) => setShowForm(set)}
+          formType={formType}
+          teamName={teamName} />
+      }
       <div className='show-container'>
         <FontAwesomeIcon
           icon={faX}
@@ -69,6 +83,14 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
               {member.first_name} {member.last_name}
               </p>)}
             </div>
+            <div className="org-action-buttons">
+              <button className='auth-btn org-action-btn' onClick={() => editForm(view.name)}>
+                Edit
+              </button>
+              <button className='auth-btn logout-btn org-action-btn'>
+                Delete
+              </button>
+            </div> 
           </div>
         : viewTeam === undefined && user === undefined ?
           <div className='info'>

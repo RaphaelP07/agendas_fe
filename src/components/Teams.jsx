@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import ViewItem from "./ViewItem";
 import Form from "./Form";
-import axios from "axios";
 
 
 const Teams = () => {
@@ -33,12 +32,17 @@ const Teams = () => {
           setShowTeam={(set) => setShowTeam(set)}
           setShowMember={(set) => setShowMember(set)}
           setShowMeeting={(set) => setShowMeeting(set)}
+          setShowForm={(set) => setShowForm(set)}
+          setFormType={(set) => setFormType(set)}
+          showForm={showForm}
+          formType={formType}
           viewTeam={viewTeam} />
       }
 
       {showForm && 
         <Form 
           setShowForm={(set) => setShowForm(set)}
+          setFormType={(set) => setFormType(set)}
           formType={formType} />
       }
 

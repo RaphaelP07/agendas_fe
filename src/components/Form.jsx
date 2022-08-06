@@ -6,17 +6,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-const Form = ({ setShowForm, formType }) => {
+const Form = ({ setShowForm, formType, setFormType, teamName }) => {
   const navigate = useNavigate();
   const { baseURL, token, organisation, createTeam } = useContext(GlobalContext);
   const [teamMembers, setTeamMembers] = useState([])
   const [meetingParticipants, setMeetingParticipants] = useState([])
-  const [name, setName] = useState("");
+  const [name, setName] = useState(teamName);
   const [formError, setFormError] = useState(false);
   const [message, setMessage] = useState('')
 
+  useEffect(() => {
+    if (formType === "CREATE TEAM") {
+      return
+    } else
+    setName(teamName)
+  }, [])
+
   const close = () => {
     setShowForm(false)
+    setFormType('')
   }
 
   const onChange = (e) => {
@@ -56,6 +64,7 @@ const Form = ({ setShowForm, formType }) => {
           onClick={() => close()}
           className='x'
         />
+        {formType === "CREATE TEAM" || formType === "EDIT TEAM" ? 
         <form className='form-right' onSubmit={onSubmit} noValidate>
           <br />
           <h2 className='form-title form'>
@@ -77,9 +86,10 @@ const Form = ({ setShowForm, formType }) => {
             {message}
           </span>
           <div className="form-btn">
-            <button className='login-btn'>Create</button>
+            <button className='login-btn'>Confirm</button>
           </div>
-        </form>
+        </form> 
+        : formType === "INVITE MEMBER" ? '' : ''}
       </div>
     </div>
   )
