@@ -5,6 +5,7 @@ import { useState, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import ViewItem from "./ViewItem";
+import Form from "./Form";
 import axios from "axios";
 
 
@@ -14,6 +15,8 @@ const Teams = () => {
   const [showTeam, setShowTeam] = useState(false)
   const [showTeams, setShowTeams] = useState(false)
   const [viewTeam, setViewTeam] = useState({})
+  const [showForm, setShowForm] = useState(false)
+  const [formType, setFormType] = useState("")
 
   const setShowMember = () => {
     return
@@ -32,6 +35,13 @@ const Teams = () => {
           setShowMeeting={(set) => setShowMeeting(set)}
           viewTeam={viewTeam} />
       }
+
+      {showForm && 
+        <Form 
+          setShowForm={(set) => setShowForm(set)}
+          formType={formType} />
+      }
+
       <div className="label-container">
         <div className='sidebar-label disable-highlight'>
           Teams
@@ -41,7 +51,12 @@ const Teams = () => {
             className={`floating-icon ${!showTeams && "rotate"}`}
             onClick={() => setShowTeams(!showTeams)}
           />
-        <FontAwesomeIcon icon={faPlus} className="floating-icon"/>
+        <FontAwesomeIcon 
+            icon={faPlus} 
+            className="floating-icon"
+            onClick={() => setShowForm(!showForm)}
+            onMouseUp={() => setFormType("CREATE TEAM")}
+          />
       </div>
       <div>
         {showTeams && teams.map(team => 

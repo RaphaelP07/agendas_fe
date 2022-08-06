@@ -49,6 +49,13 @@ export const GlobalProvider = ({ children, headers }) => {
     });
   }
 
+  function createTeam(team) {
+    dispatch({
+      type: "CREATE_TEAM",
+      payload: team,
+    });
+  }
+
   function setMembers(members) {
     dispatch({
       type: "SET_MEMBERS",
@@ -82,6 +89,7 @@ export const GlobalProvider = ({ children, headers }) => {
         organisation: state.org,
         setToken,
         setTeams,
+        createTeam,
         setMembers,
         setMeetings,
         setMeeting,

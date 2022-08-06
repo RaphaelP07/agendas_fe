@@ -20,6 +20,11 @@ export default (state, action) => {
       ...state,
       teams: action.payload,
     };
+    case "CREATE_TEAM":
+    return {
+      ...state,
+      teams: [...state.teams, action.payload.data]
+    };
     case "SET_MEMBERS":
     return {
       ...state,
