@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
 import { useState, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import ViewItem from "./ViewItem";
 import axios from "axios";
 
@@ -40,8 +40,9 @@ const Members = () => {
         <FontAwesomeIcon
             icon={faCaretDown}
             className={`floating-icon ${!showMembers && "rotate"}`}
-            onClick={() => setShowMembers(true)}
+            onClick={() => setShowMembers(!showMembers)}
           />
+        <FontAwesomeIcon icon={faPlus} className="floating-icon"/>
       </div>
       <div>
         {showMembers && members.map(member => 

@@ -50,46 +50,49 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
   }
 
   return (
-    <div className='show-container'>
-      <FontAwesomeIcon
-        icon={faX}
-        onClick={() => close()}
-        className='x'
-      />
-      <br />
-      <br />
-      {user === undefined && viewMeeting ===undefined ?
-        <div className='info'>
-          <div>team: <p className='light'>{view.name}</p> </div>
-          <br />
-          <div>members: 
-            {teamMembers.map(member => <p key={member.id} className='light'>
-            {member.first_name} {member.last_name}
-            </p>)}
+    <div>
+      <div className="prompt-bg" onClick={() => close()}></div>
+      <div className='show-container'>
+        <FontAwesomeIcon
+          icon={faX}
+          onClick={() => close()}
+          className='x'
+        />
+        <br />
+        <br />
+        {user === undefined && viewMeeting ===undefined ?
+          <div className='info'>
+            <div>team: <p className='light'>{view.name}</p> </div>
+            <br />
+            <div>members: 
+              {teamMembers.map(member => <p key={member.id} className='light'>
+              {member.first_name} {member.last_name}
+              </p>)}
+            </div>
           </div>
-        </div>
-      : viewTeam === undefined && user === undefined ?
-        <div className='info'>
-          <div>agenda: <p className='light'>{view.name}</p> </div>
-          <br />
-          <div>link:
-          <a target="_blank" href={view.url}>{view.url}</a>
+        : viewTeam === undefined && user === undefined ?
+          <div className='info'>
+            <div>agenda: <p className='light'>{view.name}</p> </div>
+            <br />
+            <div>link:
+            <a target="_blank" href={view.url}>{view.url}</a>
+            </div>
+            <br />
+            <div>notes: <p className='light'>{view.notes}</p> </div>
+            <br />
+            <div>participants: 
+              {meetingParticipants.map(member => <p key={member.id} className='light'>
+              {member.first_name} {member.last_name}
+              </p>)}
+            </div>
           </div>
-          <br />
-          <div>notes: <p className='light'>{view.notes}</p> </div>
-          <br />
-          <div>participants: 
-            {meetingParticipants.map(member => <p key={member.id} className='light'>
-            {member.first_name} {member.last_name}
-            </p>)}
+        : <div className='info'>
+            <div>name: <p className='light'>{view.first_name} {view.last_name}</p> </div>
+            <br />
+            <div>email: <p className='light'>{view.email}</p></div>
           </div>
-        </div>
-      : <div className='info'>
-          <div>name: <p className='light'>{view.first_name} {view.last_name}</p> </div>
-          <br />
-          <div>email: <p className='light'>{view.email}</p></div>
-        </div>
-      }
+        }
+      </div>
     </div>
   )
 }
