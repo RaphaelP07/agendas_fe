@@ -12,6 +12,7 @@ const Form = ({ setShowForm, formType, setFormType, teamName }) => {
   const [teamMembers, setTeamMembers] = useState([])
   const [meetingParticipants, setMeetingParticipants] = useState([])
   const [name, setName] = useState(teamName);
+  const [email, setEmail] = useState('');
   const [formError, setFormError] = useState(false);
   const [message, setMessage] = useState('')
 
@@ -32,27 +33,49 @@ const Form = ({ setShowForm, formType, setFormType, teamName }) => {
       case "name":
         setName(e.target.value);
         break;
+      case "email":
+        setEmail(e.target.value);
+        break;
     }
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios({
-      method: "post",
-      url: `${baseURL}/organisations/${organisation.id}/teams`,
-      headers: token,
-      data: {
-        name: name,
-      }
-    }).then((res) => {
-      close();
-      createTeam(res)
-    }).catch((error) => {
-      if (error) {
-        setFormError(true);
-        setMessage(error.response.data)
-      }
-    })
+
+    if (formType === "CREATE TEAM" || formType === "EDIT TEAM") {
+      axios({
+        method: formType === "CREATE TEAM" ? "post" : "put",
+        url: `${baseURL}/organisations/${organisation.id}/teams`,
+        headers: token,
+        data: {
+          name: name,
+        }
+      }).then((res) => {
+        close();
+        createTeam(res)
+      }).catch((error) => {
+        if (error) {
+          setFormError(true);
+          setMessage(error.response.data)
+        }
+      })
+    } else if (formType === "INVITE MEMBER") {
+      axios({
+        method: "post",
+        url: `${baseURL}/organisations/${organisation.id}/invite`,
+        headers: token,
+        data: {
+          email: email,
+        }
+      }).then((res) => {
+        close()
+      }).catch((error) => {
+        if (error) {
+          setFormError(true);
+          setMessage(error.response.data)
+        }
+      })
+    }
   };
 
   return (
@@ -89,7 +112,32 @@ const Form = ({ setShowForm, formType, setFormType, teamName }) => {
             <button className='login-btn'>Confirm</button>
           </div>
         </form> 
-        : formType === "INVITE MEMBER" ? '' : ''}
+        : formType === "INVITE MEMBER" ? 
+        <form className='form-right' onSubmit={onSubmit} noValidate>
+          <br />
+          <h2 className='form-title form'>
+            {formType}
+          </h2>
+          <div className="input-label form">
+            Email
+          </div>
+          <input
+            required
+            className="input-form form"
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={onChange}
+          ></input>
+          <span className={formError === false ? "display-none" : "text-error"}>
+            {message}
+          </span>
+          <div className="form-btn">
+            <button className='login-btn'>Confirm</button>
+          </div>
+        </form> 
+        : ''}
       </div>
     </div>
   )

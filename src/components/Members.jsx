@@ -5,6 +5,7 @@ import { useState, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import ViewItem from "./ViewItem";
+import Form from "./Form";
 import axios from "axios";
 
 const Members = () => {
@@ -13,6 +14,8 @@ const Members = () => {
   const [showMember, setShowMember] = useState(false)
   const [showMembers, setShowMembers] = useState(false)
   const [user, setUser] = useState({})
+  const [showForm, setShowForm] = useState(false)
+  const [formType, setFormType] = useState("")
 
 
   const setShowTeam = () => {
@@ -33,6 +36,12 @@ const Members = () => {
 
           user={user} />
       }
+      {showForm && 
+        <Form 
+          setShowForm={(set) => setShowForm(set)}
+          setFormType={(set) => setFormType(set)}
+          formType={formType} />
+      }
       <div className="label-container">
         <div className='sidebar-label disable-highlight'>
           Members
@@ -42,7 +51,12 @@ const Members = () => {
             className={`floating-icon ${!showMembers && "rotate"}`}
             onClick={() => setShowMembers(!showMembers)}
           />
-        <FontAwesomeIcon icon={faPlus} className="floating-icon"/>
+        <FontAwesomeIcon 
+          icon={faPlus} 
+          className="floating-icon"
+          onClick={() => setShowForm(!showForm)}
+          onMouseUp={() => setFormType("INVITE MEMBER")}
+        />
       </div>
       <div>
         {showMembers && members.map(member => 
