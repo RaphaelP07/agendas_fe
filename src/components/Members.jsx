@@ -10,31 +10,25 @@ import axios from "axios";
 
 const Members = () => {
   const navigate = useNavigate();
-  const { baseURL, token, members } = useContext(GlobalContext);
-  const [showMember, setShowMember] = useState(false)
+  const { baseURL, token, members, setMember } = useContext(GlobalContext);
+  const [show, setShow] = useState(false)
+  const [view, setView] = useState(false)
   const [showMembers, setShowMembers] = useState(false)
-  const [user, setUser] = useState({})
   const [showForm, setShowForm] = useState(false)
   const [formType, setFormType] = useState("")
 
-
-  const setShowTeam = () => {
-    return
-  }
-  
-  const setShowMeeting = () => {
-    return
+  const showMember = (member) => {
+    setMember(member)
+    setView('SHOW MEMBER')
+    setShow(!show)
   }
 
   return (
     <div>
-      {showMember && 
+      {show && 
         <ViewItem 
-          setShowMember={(set) => setShowMember(set)} 
-          setShowTeam={(set) => setShowTeam(set)} 
-          setShowMeeting={(set) => setShowMeeting(set)} 
-
-          user={user} />
+          setShow={(set) => setShow(set)} 
+          view={view} />
       }
       {showForm && 
         <Form 
@@ -62,9 +56,8 @@ const Members = () => {
         {showMembers && members.map(member => 
           <div 
             className="team-member disable-highlight light" 
+            onClick={() => showMember(member)}
             key={member.id}
-            onClick={() => setShowMember(!showMember)}
-            onMouseUp={() => setUser(member)}
           >
             {member.first_name} {member.last_name} {JSON.parse(localStorage.getItem('agendasLoggedUser')).id === member.id ? "(me)" : ''}
           </div>

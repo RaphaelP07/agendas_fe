@@ -20,8 +20,8 @@ const Organisation = ({ setAlert }) => {
     meetings,
     members 
   } = useContext(GlobalContext);
-  const [showMeeting, setShowMeeting] = useState(false)
-  const [viewMeeting, setViewMeeting] = useState({})
+  const [show, setShow] = useState(false)
+  const [view, setView] = useState('')
 
   const getOrgContents = (org) => {
     axios({
@@ -54,14 +54,6 @@ const Organisation = ({ setAlert }) => {
       console.log('get members', error)
     });
   }
-
-  const setShowTeam = () => {
-    return
-  }
-
-  const setShowMember = () => {
-    return
-  }
   
   useEffect(() => {
     if (localStorage.getItem('agendasToken') === null) {
@@ -88,9 +80,10 @@ const Organisation = ({ setAlert }) => {
 
   }, [])
 
-  const goToMeeting = (meeting) => {
+  const showMeeting = (meeting) => {
     setMeeting(meeting)
-    navigate(`/agendas/meetings/${meeting.id}`)
+    setView('SHOW MEETING')
+    setShow(true)
   }
 
   const admin = members === null ? '' :
@@ -102,12 +95,10 @@ const Organisation = ({ setAlert }) => {
   return (
     <div className="dashboard-container">
       <Sidebar />
-      {showMeeting && 
-        <ViewItem 
-          setShowMember={(set) => setShowMember(set)} 
-          setShowTeam={(set) => setShowTeam(set)} 
-          setShowMeeting={(set) => setShowMeeting(set)} 
-          viewMeeting={viewMeeting} />
+      {show && 
+        <ViewItem
+          setShow={(set) => setShow(set)}
+          view={view} />
       }
       <div className='dashboard-right organisation'>
         <div className="organisation-action">
@@ -149,8 +140,7 @@ const Organisation = ({ setAlert }) => {
                 meetings.map(meeting => 
                   <tr 
                     className='row' 
-                    onClick={() => setShowMeeting(true)}
-                    onMouseUp={() => setViewMeeting(meeting)}
+                    onClick={() => showMeeting(meeting)}
                     key={meeting.id}
                   >
                     <th className='light'>

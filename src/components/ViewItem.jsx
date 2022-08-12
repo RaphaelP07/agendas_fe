@@ -7,37 +7,52 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import Form from "./Form";
 import axios from "axios";
 
-const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, viewMeeting, showForm, setShowForm, formType, setFormType }) => {
-  const navigate = useNavigate();
-  const view =
-    user === undefined && viewMeeting === undefined ? viewTeam : 
-    user === undefined && viewTeam === undefined ? viewMeeting : user
-  const { baseURL, token, organisation } = useContext(GlobalContext);
+const ViewItem = ({ 
+  setShow,
+  showForm,
+  setShowForm,
+  formType,
+  setFormType,
+  view
+}) => {
+  const { 
+          baseURL,
+          token,
+          organisation,
+          member,
+          team,
+          meeting
+        } = useContext(GlobalContext);
   const [teamMembers, setTeamMembers] = useState([])
   const [meetingParticipants, setMeetingParticipants] = useState([])
   const [teamName, setTeamName] = useState("")
 
   useEffect(() => {
-    if (view === viewTeam) {
-      axios({
-        method: "get",
-        url: `${baseURL}/organisations/${organisation.id}/teams/${view.id}/members`,
-        headers: token
-      }).then((res) => {
-        setTeamMembers(res.data)
-      }).catch((error) => {
-        console.log('get team members', error)
-      });
-    } else if (view === viewMeeting) {
-      axios({
-        method: "get",
-        url: `${baseURL}/organisations/${organisation.id}/meetings/${view.id}/participants`,
-        headers: token
-      }).then((res) => {
-        setMeetingParticipants(res.data.users)
-      }).catch((error) => {
-        console.log('get participants', error)
-      });
+    switch (view) {
+      case "SHOW TEAM":
+        axios({
+          method: "get",
+          url: `${baseURL}/organisations/${organisation.id}/teams/${team.id}/members`,
+          headers: token
+        }).then((res) => {
+          setTeamMembers(res.data)
+        }).catch((error) => {
+          console.log('get team members', error)
+        });
+        break
+      case "SHOW MEETING":
+        axios({
+          method: "get",
+          url: `${baseURL}/organisations/${organisation.id}/meetings/${meeting.id}/participants`,
+          headers: token
+        }).then((res) => {
+          setMeetingParticipants(res.data.users)
+        }).catch((error) => {
+          console.log('get participants', error)
+        });
+        break
+      case "SHOW MEMBER":
+        break
     }
   }, [])
 
@@ -48,13 +63,7 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
   }
 
   const close = () => {
-    setShowMember(false)
-    setShowTeam(false)
-    setShowMeeting(false)
-  }
-
-  const goToMeeting = (link) => {
-    navigate(link)
+    setShow(false)
   }
 
   return (
@@ -74,9 +83,9 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
         />
         <br />
         <br />
-        {user === undefined && viewMeeting ===undefined ?
+        {view === "SHOW TEAM" ?
           <div className='info'>
-            <div>team: <p className='light'>{view.name}</p> </div>
+            <div>team: <p className='light'>{team.name}</p> </div>
             <br />
             <div>members: 
               {teamMembers.map(member => <p key={member.id} className='light'>
@@ -84,7 +93,7 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
               </p>)}
             </div>
             <div className="org-action-buttons">
-              <button className='auth-btn org-action-btn' onClick={() => editForm(view.name)}>
+              <button className='auth-btn org-action-btn' onClick={() => editForm(team.name)}>
                 Edit
               </button>
               <button className='auth-btn logout-btn org-action-btn'>
@@ -92,15 +101,15 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
               </button>
             </div> 
           </div>
-        : viewTeam === undefined && user === undefined ?
+        : view === "SHOW MEETING" ?
           <div className='info'>
-            <div>agenda: <p className='light'>{view.name}</p> </div>
+            <div>agenda: <p className='light'>{meeting.name}</p> </div>
             <br />
             <div>link:
-            <a target="_blank" href={view.url}>{view.url}</a>
+            <a target="_blank" href={meeting.url}>{meeting.url}</a>
             </div>
             <br />
-            <div>notes: <p className='light'>{view.notes}</p> </div>
+            <div>notes: <p className='light'>{meeting.notes}</p> </div>
             <br />
             <div>participants: 
               {meetingParticipants.map(member => <p key={member.id} className='light'>
@@ -109,9 +118,9 @@ const ViewItem = ({ setShowMember, setShowTeam, setShowMeeting, user, viewTeam, 
             </div>
           </div>
         : <div className='info'>
-            <div>name: <p className='light'>{view.first_name} {view.last_name}</p> </div>
+            <div>name: <p className='light'>{member.first_name} {member.last_name}</p> </div>
             <br />
-            <div>email: <p className='light'>{view.email}</p></div>
+            <div>email: <p className='light'>{member.email}</p></div>
           </div>
         }
       </div>

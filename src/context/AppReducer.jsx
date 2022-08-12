@@ -20,15 +20,37 @@ export default (state, action) => {
       ...state,
       teams: action.payload,
     };
+
+    case "SET_TEAM":
+    return {
+      ...state,
+      team: action.payload,
+    };
+
     case "CREATE_TEAM":
     return {
       ...state,
       teams: [...state.teams, action.payload.data]
     };
+
+    case "EDIT_TEAM":
+    return {
+      ...state,
+      team: action.payload.data,
+      teams: state.teams.map((team) => {
+        return team.id === action.payload.id ? action.payload.data : team
+      })
+    };
+
     case "SET_MEMBERS":
     return {
       ...state,
       members: action.payload,
+    };
+    case "SET_MEMBER":
+    return {
+      ...state,
+      member: action.payload,
     };
     case "SET_MEETINGS":
     return {

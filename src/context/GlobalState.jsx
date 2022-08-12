@@ -7,7 +7,9 @@ const initialState = {
   orgs: [],
   org: {},
   teams: [],
+  team: {},
   members: [],
+  member: {},
   meetings: [],
   meeting: {}
 };
@@ -49,9 +51,23 @@ export const GlobalProvider = ({ children, headers }) => {
     });
   }
 
+  function setTeam(team) {
+    dispatch({
+      type: "SET_TEAM",
+      payload: team,
+    });
+  }
+
   function createTeam(team) {
     dispatch({
       type: "CREATE_TEAM",
+      payload: team,
+    });
+  }
+
+  function editTeam(team) {
+    dispatch({
+      type: "EDIT_TEAM",
       payload: team,
     });
   }
@@ -60,6 +76,13 @@ export const GlobalProvider = ({ children, headers }) => {
     dispatch({
       type: "SET_MEMBERS",
       payload: members,
+    });
+  }
+
+  function setMember(member) {
+    dispatch({
+      type: "SET_MEMBER",
+      payload: member,
     });
   }
 
@@ -84,13 +107,19 @@ export const GlobalProvider = ({ children, headers }) => {
         token: state.token,
         orgs: state.orgs,
         teams: state.teams,
+        team: state.team,
         members: state.members,
+        member: state.member,
         meetings: state.meetings,
+        meeting: state.meeting,
         organisation: state.org,
         setToken,
         setTeams,
+        setTeam,
         createTeam,
+        editTeam,
         setMembers,
+        setMember,
         setMeetings,
         setMeeting,
         setOrgs,

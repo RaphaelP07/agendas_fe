@@ -9,34 +9,29 @@ import Form from "./Form";
 
 
 const Teams = () => {
-  const navigate = useNavigate();
-  const { baseURL, token, teams } = useContext(GlobalContext);
-  const [showTeam, setShowTeam] = useState(false)
+  const { baseURL, token, teams, setTeam, team } = useContext(GlobalContext);
+  const [show, setShow] = useState(false)
   const [showTeams, setShowTeams] = useState(false)
-  const [viewTeam, setViewTeam] = useState({})
+  const [view, setView] = useState('')
   const [showForm, setShowForm] = useState(false)
   const [formType, setFormType] = useState("")
 
-  const setShowMember = () => {
-    return
-  }
-  
-  const setShowMeeting = () => {
-    return
+  const showTeam = (team) => {
+    setView('SHOW TEAM')
+    setShow(true)
+    setTeam(team)
   }
 
   return (
     <div>
-      {showTeam && 
+      {show && 
         <ViewItem 
-          setShowTeam={(set) => setShowTeam(set)}
-          setShowMember={(set) => setShowMember(set)}
-          setShowMeeting={(set) => setShowMeeting(set)}
           setShowForm={(set) => setShowForm(set)}
           setFormType={(set) => setFormType(set)}
+          setShow={(set) => setShow(set)}
           showForm={showForm}
-          formType={formType}
-          viewTeam={viewTeam} />
+          view={view}
+          formType={formType} />
       }
 
       {showForm && 
@@ -67,8 +62,7 @@ const Teams = () => {
           <div 
             className="team-member disable-highlight light" 
             key={team.id}
-            onClick={() => setShowTeam(true)}
-            onMouseUp={() => setViewTeam(team)}
+            onClick={() => showTeam(team)}
           >
             {team.name}
           </div>

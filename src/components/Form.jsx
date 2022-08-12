@@ -6,12 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-const Form = ({ setShowForm, formType, setFormType, teamName }) => {
+const Form = ({ setShowForm, formType, setFormType }) => {
   const navigate = useNavigate();
-  const { baseURL, token, organisation, createTeam } = useContext(GlobalContext);
+  const { baseURL, token, organisation, createTeam, team, editTeam } = useContext(GlobalContext);
   const [teamMembers, setTeamMembers] = useState([])
   const [meetingParticipants, setMeetingParticipants] = useState([])
-  const [name, setName] = useState(teamName);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [formError, setFormError] = useState(false);
   const [message, setMessage] = useState('')
@@ -20,7 +20,7 @@ const Form = ({ setShowForm, formType, setFormType, teamName }) => {
     if (formType === "CREATE TEAM") {
       return
     } else
-    setName(teamName)
+    setName(team.name)
   }, [])
 
   const close = () => {
@@ -41,10 +41,10 @@ const Form = ({ setShowForm, formType, setFormType, teamName }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    if (formType === "CREATE TEAM" || formType === "EDIT TEAM") {
+    
+    if (formType === "CREATE TEAM") {
       axios({
-        method: formType === "CREATE TEAM" ? "post" : "put",
+        method: "post",
         url: `${baseURL}/organisations/${organisation.id}/teams`,
         headers: token,
         data: {
@@ -57,6 +57,23 @@ const Form = ({ setShowForm, formType, setFormType, teamName }) => {
         if (error) {
           setFormError(true);
           setMessage(error.response.data)
+        }
+      })
+    } else if (formType === "EDIT TEAM") {
+      axios({
+        method: "put",
+        url: `${baseURL}/organisations/${organisation.id}/teams/${team.id}`,
+        headers: token,
+        data: {
+          name: name,
+        }
+      }).then((res) => {
+        close();
+        editTeam(res)
+      }).catch((error) => {
+        if (error) {
+          setFormError(true);
+          setMessage(error.response)
         }
       })
     } else if (formType === "INVITE MEMBER") {
