@@ -1,7 +1,6 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import ViewItem from "./ViewItem";
@@ -9,7 +8,7 @@ import Form from "./Form";
 
 
 const Teams = () => {
-  const { baseURL, token, teams, setTeam, team } = useContext(GlobalContext);
+  const { teams, setTeam } = useContext(GlobalContext);
   const [show, setShow] = useState(false)
   const [showTeams, setShowTeams] = useState(false)
   const [view, setView] = useState('')

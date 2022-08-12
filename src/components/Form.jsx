@@ -1,16 +1,14 @@
 import React from 'react'
 import { GlobalContext } from "../context/GlobalState";
 import { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const Form = ({ setShowForm, formType, setFormType }) => {
-  const navigate = useNavigate();
   const { baseURL, token, organisation, createTeam, team, editTeam } = useContext(GlobalContext);
-  const [teamMembers, setTeamMembers] = useState([])
-  const [meetingParticipants, setMeetingParticipants] = useState([])
+  // const [teamMembers, setTeamMembers] = useState([])
+  // const [meetingParticipants, setMeetingParticipants] = useState([])
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [formError, setFormError] = useState(false);

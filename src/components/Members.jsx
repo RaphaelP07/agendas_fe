@@ -1,16 +1,13 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalState";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 import ViewItem from "./ViewItem";
 import Form from "./Form";
-import axios from "axios";
 
 const Members = () => {
-  const navigate = useNavigate();
-  const { baseURL, token, members, setMember } = useContext(GlobalContext);
+  const { members, setMember } = useContext(GlobalContext);
   const [show, setShow] = useState(false)
   const [view, setView] = useState(false)
   const [showMembers, setShowMembers] = useState(false)

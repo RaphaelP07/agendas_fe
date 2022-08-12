@@ -1,7 +1,6 @@
 import React from 'react'
 import { GlobalContext } from "../context/GlobalState";
 import { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import Form from "./Form";
@@ -50,8 +49,6 @@ const ViewItem = ({
         }).catch((error) => {
           console.log('get participants', error)
         });
-        break
-      case "SHOW MEMBER":
         break
     }
   }, [])
